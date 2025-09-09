@@ -7,6 +7,7 @@ use App\Http\Controllers\publicacionController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RatingController;
 
 
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
@@ -41,6 +42,11 @@ Route::get('verPublicacion/{id}', [publicacionController::class, 'verPublicacion
 Route::get('solicitudes', function(){
     return "Acá aparecerán tus solicitudes";
 });
+
+/* ----------------------RATING--------------------------------- */
+Route::post('ratings', [RatingController::class, 'store'])->name('ratings.store');
+Route::put('ratings/{id}', [RatingController::class, 'update'])->name('ratings.update');
+Route::delete('ratings/{id}', [RatingController::class, 'destroy'])->name('ratings.destroy');
 
 
 Route::get('buscarPublicaciones', [publicacionController::class , 'buscarPublicaciones'])->name('buscar.publicaciones');

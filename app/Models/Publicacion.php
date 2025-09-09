@@ -30,4 +30,22 @@ class Publicacion extends Model
         return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
 
+
+public function user()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
+
+    // Relación con los ratings que recibió
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'id_publicaciones');
+    }
+
+    // Promedio de calificación
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
+
 }

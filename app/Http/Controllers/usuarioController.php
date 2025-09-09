@@ -8,6 +8,9 @@ use App\Models\Publicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Rating;
+use Illuminate\Validation\Rule;
+
 
 class usuarioController extends Controller
 {
@@ -75,4 +78,34 @@ class usuarioController extends Controller
             $usuario = $publicacion->usuario;
             return view('laburapp.verPerfilDeOtro', compact('usuario'));}
     }
+
+//funciones de rating
+
+public function verRatingPropio(){
+    /** @var \App\Models\Usuario $usuario */
+    $usuario = Auth::user();
+
+    $promedio = $usuario->promedioRating();
+
+    if ($promedio === null) {
+        $promedio = 'Sin calificaciones';
+    }
+
+    return view('laburapp.perfil', compact('usuario', 'promedio'));
+}
+
+
+public function verRatingDeOtro($id)
+{
+    $usuario = Usuario::findOrFail($id);
+
+    $promedio = $usuario->promedioRating();
+
+    if ($promedio === null) {
+        $promedio = 'Sin calificaciones';
+    }
+
+    return view('laburapp.perfil', compact('usuario', 'promedio'));
+}
+
 }
