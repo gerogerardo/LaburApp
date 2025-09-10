@@ -28,11 +28,11 @@
                     @auth
                     <div class="usuario">
                     <p>Bienvenido, {{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</p>
-                    <a class="boton-inicio-cerrar-sesion" href="{{ route('cerrarSesion.usuario') }}" alt="CERRAR SESIÓN">Cerrar sesión</a>
+                    <a class="btn-cerrar-sesion" href="{{ route('cerrarSesion.usuario') }}" alt="CERRAR SESIÓN">Cerrar sesión</a>
                     </div>
                     <img src="{{ asset('storage/' . auth()->user()->foto_perfil )}}" alt="Foto de perfil" width="33%">
                     @else
-                    <a class="boton-inicio-cerrar-sesion" href="{{ route('inicioSesion.form') }}">Iniciar sesión</a>
+                    <a class="btn-busqueda" href="{{ route('inicioSesion.form') }}">Iniciar sesión</a>
                     <p>No hay usuario logueado.</p>
                     @endauth     
         </div>

@@ -39,13 +39,13 @@ public function user()
     // Relación con los ratings que recibió
     public function ratings()
     {
-        return $this->hasMany(Rating::class, 'id_publicaciones');
+        return $this->hasMany(Rating::class, 'id_publicaciones', 'id_publicaciones');
     }
 
     // Promedio de calificación
     public function averageRating()
     {
-        return $this->ratings()->avg('rating');
+        return round($this->ratings()->avg('rating'), 1);
     }
 
 }

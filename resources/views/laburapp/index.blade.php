@@ -11,9 +11,7 @@
 
     <div class="grupo">
     @section('contenido')
-    <main
-    class="cabeceraindex">
-        <h1 class="titulo">Ponete a laburar</h1>
+        <h1 class="titulo">BIENVENIDO A LABURAPP</h1>
         <form class="busqueda" action="{{route('buscar.publicaciones')}}" method="GET">
             <input class="cajaDeBusqueda" type="search" name="busq" class="caja" placeholder="Busqueda por palabra" required>
             <input class="btn-busqueda" type="submit" value="Enviar" class="boton" onclick="location.href='{{ route('buscar.publicaciones') }}'">

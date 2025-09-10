@@ -47,6 +47,12 @@ header {
     align-items: center;
   }
 
+  .perfil img{
+    border-radius: 5%;
+    height: 90px;
+    width: auto;
+  }
+
   header .nav-bar {
     text-align: center;
     display: flex;
@@ -96,12 +102,12 @@ header .fotoperfil{
   display: flex;
     flex-direction: column;
     align-items: center;
+    width: 60%;
 }
 
 .cajaDeBusqueda{
   padding: 10px;
   width: 100%;
-  max-width: 300px;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -109,7 +115,7 @@ header .fotoperfil{
 }
 
 .btn-busqueda{
-  padding: 10px 20px;
+  padding: 2vh 3vh;
   background-color: #333;
   color: #fff;
   border: none;
@@ -117,6 +123,19 @@ header .fotoperfil{
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-cerrar-sesion{
+  padding: 1vh;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 .btn-busqueda:hover{
@@ -150,6 +169,7 @@ header .fotoperfil{
     background-color: #fff;
     padding: 2vh;
     margin: 2vh;
+    margin-top: 0;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);;
 }
@@ -283,7 +303,12 @@ header .fotoperfil{
     display: flex;
     text-align: center;
     justify-content: center;
+    flex-direction: column;
+}
 
+.usuario p{
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .bloque-perfil .fotoperfil{
@@ -310,7 +335,7 @@ header .fotoperfil{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5vh;
+    padding: 2vh;
 }
 
 .barra-superior {
@@ -438,8 +463,9 @@ header b {
 }
 
 .contenedor-input {
-  margin: 2dvh;
-  margin-bottom: 3dvh;
+  margin: 1dvh;
+  padding: 1dvh;
+  width: 70%;
 }
 
 #nombre-usuario {
@@ -603,7 +629,6 @@ margin: 20px;
 
 .centrar{
   display: flex;
-  margin-top: 20px;
   flex-direction: column;
   justify-content: center; 
   align-items: center;
@@ -621,24 +646,28 @@ margin: 20px;
 .cuadro-inicio-sesion{
   background: #ffffff; 
   border: 1px solid #ddd;
+  margin: 6vh;
   border-radius: 8px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width:  400px;
+  width:  35%;
   height: auto;
   text-align: center;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cuadro-inicio-sesion input[type="file"]{
-  width: 100%; 
+  width: auto; 
   padding: 10px;
 }
 .cuadro-inicio-sesion input[type="email"],
 .cuadro-inicio-sesion input[type="password"],
 .cuadro-inicio-sesion input[type="text"],
 .cuadro-inicio-sesion input[type="tel"] {
-    width: 100%; 
+    width: 100%;
+    height: 5vh;
     padding: 10px;
     margin: 10px 0; 
     border: 1px solid #ccc; 
@@ -662,7 +691,8 @@ margin: 20px;
 .cuadro-inicio-sesion h4 {
   margin: 0; 
   font-size: 14px; 
-  font-weight: normal; 
+  font-weight: normal;
+  font-size: medium; 
   color: #333; 
 }
 
@@ -734,7 +764,8 @@ margin: 20px;
 
 .cuadro-crear-formulario textarea {
   width: 70%;
-  height: 10vw;
+  height: 200px;
+  padding: 2vh;
   resize: none;
 }
 
@@ -765,8 +796,38 @@ margin: 20px;
   color: #0f6ccf;
 }
 
+.caja-registro1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: span 2 / span 2;
+  justify-content: center;
+}
+.caja-registro2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-row: span 3 / span 3;
+  grid-row-start: 2;
+}
+.caja-registro3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-row: span 3 / span 3;
+    grid-row-start: 2;
+}
+.caja-registro4{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: span 2 / span 2;
+    grid-row-start: 5;
+}
+
 select {
   width: 100%;
+  height: 5vh;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -775,8 +836,57 @@ select {
   font-size: 14px;
 }
 
-.cuadro-inicio-sesion input[type="file"]{
-  width: 100%;
+.cuadro-registro-usuario{
+  background: #ffffff; 
+  border: 1px solid #ddd;
+  margin: 6vh;
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width:  70%;
+  height: auto;
+  text-align: center;
+  display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.cuadro-registro-usuario input[type="file"]{
+  width: auto; 
+  padding: 10px;
+}
+.cuadro-registro-usuario input[type="email"],
+.cuadro-registro-usuario input[type="password"],
+.cuadro-registro-usuario input[type="text"],
+.cuadro-registro-usuario input[type="tel"] {
+    width: 100%; 
+    height: 5vh;
+    padding: 10px;
+    margin: 10px 0; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    font-size: 14px; 
+}
+
+.cuadro-registro-usuario a {
+  text-decoration: none; 
+  color: #007bff; 
+  font-size: 14px;
+  margin: 2vh; 
+}
+
+.cuadro-registro-usuario a:hover {
+  text-decoration: underline; 
+}
+
+.cuadro-registro-usuario h4 {
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: normal;
+  font-size: medium; 
+  color: #333; 
 }
 
 /*--------------------------- CSS DE MODIFICAR USUARIO ---------------*/
@@ -1133,5 +1243,17 @@ footer h3{
     width: 100%; /* Ajustar al ancho del contenedor */
     height: auto; /* Mantener proporción */
 }
+.mi-calificacion {
+    background-color: #fff9c4; /* color amarillo claro */
+    border: 1px solid #fbc02d; /* borde amarillo */
+    padding: 10px;
+    border-radius: 5px;
 
+}
+}
+
+.campo textarea{
+  resize: none;
+  width: 100%;
+  height: 20vh;
 }

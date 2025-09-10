@@ -22,19 +22,22 @@
         <div class='contenedor-datos'> <h4>Mail</h4> <p>{{ auth()->user()->mail }}</p></div>
         <div class='contenedor-datos'> <h4>Localidad</h4> <p>{{ auth()->user()->localidad->nombre_localidad }}</p></div>
         <h3>Promedio de calificaciones: 
-    @if(is_numeric($promedio))
+    {{-- @if(is_numeric($promedio))
         {{ number_format($promedio, 1) }} ⭐
     @else
         {{ $promedio }}
-    @endif
+    @endif --}}
 </h3>
     
     </div>
-    </div>
+</div>
     
     @endauth
     @guest
-        <p>No hay usuario logueado, inicia sesión</p>
+        </div>
+        <div class="contenedor-no-sesion">
+            <p>No tienes una cuenta ingresada. Inicia Sesión e inténtalo de nuevo.</p>
+        </div>
     @endguest
     
 

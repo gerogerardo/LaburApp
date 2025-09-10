@@ -14,9 +14,8 @@ class RatingController extends Controller
     public function store(Request $datos)
     {
         $datos->validate([
-            'rating' => 'required|interger|between:1,5' ,
-            'id_usuario' => 'requiered' ,
-            'id_publicaciones' => 'requiered' ,
+            'rating' => 'required|integer|between:1,5' ,
+            'id_publicaciones' => 'required' ,
             'comentario' => 'nullable'
         ]);
         
@@ -26,7 +25,7 @@ class RatingController extends Controller
 
         //Verificar que el usuario no sea dueño de la publicación
         if($publicacion->id_usuario == Auth::id()){
-            return response()->json(['error' => 'No puedes calificar tu propia publicación'], 403);
+            return back()->with('success', 'No puedes calificar tu propia publicación');
         }
         
         //Verificar que el usuario no haya clasificado ya la publicación
@@ -34,7 +33,7 @@ class RatingController extends Controller
         ->where('id_publicaciones', $datos->id_publicaciones)
         ->first();
         if($ratingExistente){
-            return response()->json(['error' => 'Ya has calificado esta publicación'], 403);
+            return back()->with('success', 'Ya has calificado esta publicación');
         }
         
         $rating = Rating::create([
@@ -45,10 +44,8 @@ class RatingController extends Controller
             'id_usuario_rankeado' => $publicacion->id_usuario,
         ]);
 
-        return response()->json([
-            'message' => 'Calificación creada exitosamente',
-            'rating' => $rating->load(['user', 'publication'])
-        ], 201);
+        return back()->with('success', 'Calificación creada exitosamente');
+
     }
 
 // Actualizar un rating
@@ -62,7 +59,7 @@ public function update(Request $datos,$id)
 $rating = Rating::findOrFail($id);
 
 if($rating->id_usuario != Auth::id()) {
-    return response()->json(['error' => 'No tienes permiso para actualizar esta calificación'], 403);
+    return back()->with('success', 'No tienes permiso para actualizar esta calificación');
 }
 
 $rating->update([
@@ -70,10 +67,7 @@ $rating->update([
     'comentario' => $datos->comentario
 ]);
 
-return response()->json([
-'message' => 'Calificación actualizada exitosamente',
-'rating' => $rating
-]);
+return back()->with('success', 'Calificación actualizada correctamente');
 }
 
 // Eliminar un rating
@@ -82,12 +76,12 @@ public function destroy($id)
     $rating = Rating::findOrFail($id);
 
     if ($rating->id_usuario !== Auth::id()) {
-        return response()->json(['error' => 'No tienes permiso para eliminar esta calificación'], 403);
+        return back()->with('success', 'No tienes permiso para eliminar esta calificación');
     }
 
     $rating->delete();
 
-    return response()->json(['message' => 'Calificación eliminada correctamente']);
+    return back()->with('success', 'Calificación eliminada exitosamente');
 }
 
 }

@@ -8,7 +8,7 @@
     <h1>Crear publicación</h1>
 
     <h3>Título de la publicación</h3>
-    <textarea name="nombre_publicacion" class="cuadro-crear-formulario" class="publicaciones" required>{{ old('nombre_publicacion') }}</textarea>
+    <input name="nombre_publicacion" type="text"  class="cuadro-crear-formulario" class="publicaciones" required>{{ old('nombre_publicacion') }}</input>
 
     <h3>Descripción de la publicación</h3>
     <textarea class="cuadro-crear-formulario" name="descripcion" required>{{ old('descripcion') }}</textarea>

@@ -25,15 +25,19 @@
                 @if($errors->has('inicioSesion'))
                     <div class="error">{{ $errors->first('inicioSesion') }}</div>
                 @endif
-                Email <br> 
-                <input type="email" placeholder="Ingrese email..." name="mail" required autofocus> 
+                <div class="contenedor-input">
+                    <h3>Email</h3> <br>
+                    <input type="email" placeholder="Ingrese su Correo Electrónico..." name="mail" required autofocus>
+                </div>
                 <br> <br>
-                Contraseña <br>
-                <div class="input-row">
-                    <input id="pass" type="password" placeholder="Contraseña..." name="pass" required>
-                    <p class="eye">
-                        <img src="{{ asset('/storage/imagenes/ojo-cerrado.png') }}" alt="Mostrar contraseña">
-                    </p>
+                <div class='contenedor-input'>
+                    <h3>Contraseña</h3> <br>
+                    <div class="input-row">
+                        <input id="pass" type="password" placeholder="Ingrese su Contraseña..." name="pass" required>
+                        <p class="eye">
+                            <img src="{{ asset('/storage/imagenes/ojo-cerrado.png') }}" alt="Mostrar contraseña">
+                        </p>
+                    </div>
                 </div>
                 <br> <br>
                 <input class="btn-busqueda" type="submit" value="Iniciar Sesión">

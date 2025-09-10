@@ -1,11 +1,12 @@
 @extends('layouts.plantilla') 
 @section('titulo', 'Mis Publicaciones')
 @section('contenido')
-
+<div class="seccion">
     <h1>Mis publicaciones</h1>
 
     @if ($publicaciones->isEmpty())
         <p>No tenés publicaciones todavía.</p>
+        </div>
     @else
         <div class="seccion">
             <div class="publicaciones">

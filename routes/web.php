@@ -39,6 +39,7 @@ Route::get('modificarPublicaciones/{id}', [publicacionController::class, 'cargar
 Route::post('modificarPublicaciones/{id}', [publicacionController::class, 'modificarPublicacion'])->name('modificar.publicacion');
 Route::get('verPublicacion/{id}', [publicacionController::class, 'verPublicacion'])->name('ver.publicacion');
 
+//Route::get('solicitudes', )->name('solicitar.publicacion');
 Route::get('solicitudes', function(){
     return "Acá aparecerán tus solicitudes";
 });
@@ -64,5 +65,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//----------- SOLICITUD USUARIO ---------------//
+
+
+
 
 require __DIR__.'/auth.php';

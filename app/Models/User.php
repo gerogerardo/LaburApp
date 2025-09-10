@@ -12,6 +12,17 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    // Tabla real en la base de datos
+    protected $table = 'usuarios';
+
+    // Clave primaria real
+    protected $primaryKey = 'id_usuario';
+
+    // Si la PK es autoincremental
+    public $incrementing = true;
+
+    // Tipo de la PK
+    protected $keyType = 'int';
     /**
      * The attributes that are mass assignable.
      *
