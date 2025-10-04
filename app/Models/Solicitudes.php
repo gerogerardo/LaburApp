@@ -16,5 +16,13 @@ class Solicitudes extends Model
         'id_usuario'
     ];
 
-    public $timestamps = true;
+    public $timestamps = false;
+    
+    public function usuario(){
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
+    }
+      public function publicacion(){
+        return $this->belongsTo(Publicacion::class, 'id_publicaciones', 'id_publicaciones');
+    }
+
 }

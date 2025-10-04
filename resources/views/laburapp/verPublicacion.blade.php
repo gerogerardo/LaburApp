@@ -18,6 +18,7 @@
             <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen de la publicación" id="fotopubli">
 
             <div style="margin-top: 15px;">
+                <input type="button" class="boton" value="solicitar" onclick="location.href='{{ route('solicitar.publicacion', $publicacion->id_publicaciones) }}'" >
                 <input type="button" class="boton" value="Volver" onclick="location.href='{{ route('buscar.publicaciones') }}'">
                 
             </div>

@@ -8,7 +8,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\solicitudesController;
 
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
 
@@ -39,10 +39,7 @@ Route::get('modificarPublicaciones/{id}', [publicacionController::class, 'cargar
 Route::post('modificarPublicaciones/{id}', [publicacionController::class, 'modificarPublicacion'])->name('modificar.publicacion');
 Route::get('verPublicacion/{id}', [publicacionController::class, 'verPublicacion'])->name('ver.publicacion');
 
-//Route::get('solicitudes', )->name('solicitar.publicacion');
-Route::get('solicitudes', function(){
-    return "Acá aparecerán tus solicitudes";
-});
+
 
 /* ----------------------RATING--------------------------------- */
 Route::post('ratings', [RatingController::class, 'store'])->name('ratings.store');
@@ -67,7 +64,8 @@ Route::middleware('auth')->group(function () {
 });
 //----------- SOLICITUD USUARIO ---------------//
 
-
+Route::get('verSolicitudes', [solicitudesController::class,'verSolicitudes'])->name('ver.solicitudes');
+Route::get('solicitar/{id_publicaciones}', [solicitudesController::class,'solicitar'])->name('solicitar.publicacion');
 
 
 require __DIR__.'/auth.php';
