@@ -134,5 +134,7 @@ public function buscarPublicaciones(Request $request)
 public function verPublicacion($id){
     $publicacion = Publicacion::with(['profesion', 'usuario', 'ratings.user'])->FindOrFail($id);
     return view('laburapp.verPublicacion', compact('publicacion'));
+
+
 }
 }

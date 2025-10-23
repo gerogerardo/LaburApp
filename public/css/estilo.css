@@ -203,6 +203,22 @@ header .fotoperfil{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* alertas de inicio, cerrar sesion, solicitudes */
+.alertas {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: fixed;
+  width: 100%;
+  animation: desaparecer 3s ease forwards;
+}
+
+@keyframes desaparecer {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
 
 /* -----------------------------------CSS DEL PERFIL----------------------------------------- */
 
@@ -336,6 +352,7 @@ header .fotoperfil{
     flex-direction: column;
     align-items: center;
     padding: 2vh;
+    padding-top: 4vh;
 }
 
 .barra-superior {

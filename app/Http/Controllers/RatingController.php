@@ -7,6 +7,7 @@ use App\Models\Publicacion;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
 
+
 class RatingController extends Controller
 {
 
@@ -83,5 +84,9 @@ public function destroy($id)
 
     return back()->with('success', 'Calificación eliminada exitosamente');
 }
+
+
+
+
 
 }

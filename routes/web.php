@@ -9,10 +9,11 @@ use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\solicitudesController;
+use App\Http\Controllers\PerfilController;
 
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
 
-Route::get('perfil', function(){return view("laburapp.perfil");})->name('perfil');
+Route::get('/perfil', [PerfilController::class, 'verPerfil'])->name('perfil');
 
 
 //----------- USUARIO ---------------//
