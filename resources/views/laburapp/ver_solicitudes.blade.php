@@ -2,16 +2,21 @@
 @section('titulo','Solicitudes')
 @section('contenido')
 <div class='seccion'>
+@if ($solicitudes->isEmpty())
+    <h3>No tienes solicitudes recibidas</h3>
+@else
 
-  @foreach ($solicitudes as $solicitud)
-  
+<h3>Solicitudes recibidas</h3>
+
+    @foreach ($solicitudes as $solicitud)
+    
     <div class='bloque-solicitud'>
         <div class='texto-solicitudes'>
-            Tienes una solicitud de {{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}}
-            
-            para la publicacion de <b>{{ $solicitud->publicacion->nombre_publicacion }}</b>
-</div>
+            <p>Tienes una solicitud de {{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}} para la publicacion de <strong> "{{ $solicitud->publicacion->nombre_publicacion }}"</strong></p>
+            <p>Solicitado el día: </p>
+        </div>
     </div>
 @endforeach
     </div>
+    @endif
     @endsection

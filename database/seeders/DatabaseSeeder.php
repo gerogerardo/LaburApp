@@ -20,4 +20,10 @@ $this->call(PublicacionSeeder::class);
             'email' => 'test@example.com',
         ]);
     }
+    public function runseeds(): void
+    {
+        $this->call(UsuarioSeeder::class);
+        $this->call(PublicacionSeeder::class);
+    }
+
 }

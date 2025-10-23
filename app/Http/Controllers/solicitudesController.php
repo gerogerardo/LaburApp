@@ -11,34 +11,29 @@ use App\Models\Publicacion;
 class solicitudesController extends Controller
 {
     
-     public function verSolicitudes() {
+        public function verSolicitudes() {
     if (Auth::check()) {
-       
+        
         $idsPublicaciones = Publicacion::where('id_usuario', Auth::id())->pluck('id_publicaciones');
 
         $solicitudes = Solicitudes::whereIn('id_publicaciones', $idsPublicaciones)
             ->with(['usuario', 'publicacion']) 
             ->get();
 
-        if ($solicitudes->isEmpty()) {
-            return redirect()->route('perfil')->withErrors(['error' => 'No hay solicitudes recibidas.']);
-        }
-
         return view('laburapp.ver_solicitudes', compact('solicitudes'));
     }
-
     return redirect()->route('login');
 }
     
 
     public function solicitar($id_publicaciones)
-  {
+    {
     $id_usuario = Auth::id(); 
     $existe = Solicitudes::where('id_usuario', $id_usuario)
-                         ->where('id_publicaciones', $id_publicaciones)
-                         ->exists();
+                            ->where('id_publicaciones', $id_publicaciones)
+                            ->exists();
 
-                         
+
     if (!$existe) {
         Solicitudes::create([
             'id_usuario' => $id_usuario,
