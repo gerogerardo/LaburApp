@@ -1,7 +1,9 @@
 @extends('layouts.plantilla')
 @section('titulo','Ver Publicación')
 @section('contenido')
-<h1>Ver publicación</h1>
+<h1>Ver publicación</h1>  
+
+
 
 <div class="seccion">
     <div class="publicaciones">
@@ -27,6 +29,8 @@
 </div>
 
 <hr>
+
+
 
 {{-- Mensajes de éxito/error --}}
 @if(session('success'))
@@ -103,5 +107,5 @@
         <p>No hay calificaciones todavía.</p>
     @endif
 </div>
-
+   
 @endsection

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Rating;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 
 class usuarioController extends Controller
@@ -76,36 +77,48 @@ class usuarioController extends Controller
         }
         else {
             $usuario = $publicacion->usuario;
-            return view('laburapp.verPerfilDeOtro', compact('usuario'));}
+            return view('laburapp.verPerfilDeOtro', compact('usuario'));
     }
 
 //funciones de rating
-
-public function verRatingPropio(){
-    /** @var \App\Models\Usuario $usuario */
-    $usuario = Auth::user();
-
-    $promedio = $usuario->promedioRating();
-
-    if ($promedio === null) {
-        $promedio = 'Sin calificaciones';
     }
-
-    return view('laburapp.perfil', compact('usuario', 'promedio'));
-}
-
-
-public function verRatingDeOtro($id)
+public function verPerfilDeOtroUsuario($id)
 {
+    /** @var \App\Models\Usuario $usuario */
     $usuario = Usuario::findOrFail($id);
 
-    $promedio = $usuario->promedioRating();
+    // Obtener IDs de publicaciones del usuario
+    $publicaciones = Publicacion::where('id_usuario', $id)
+        ->pluck('id_publicaciones');
 
-    if ($promedio === null) {
-        $promedio = 'Sin calificaciones';
+    // Inicializar variables
+    $promedioGeneral = 0;
+    $promedioPorProfesion = collect();
+
+    if ($publicaciones->isNotEmpty()) {
+        // Promedio general
+        $promedioGeneral = Rating::whereIn('id_publicaciones', $publicaciones)
+            ->avg('rating');
+        $promedioGeneral = $promedioGeneral ? round($promedioGeneral, 2) : 0;
+
+        // ✅ Promedio por profesión con join
+        $promedioPorProfesion = Rating::join('publicaciones', 'rating.id_publicaciones', '=', 'publicaciones.id_publicaciones')
+            ->join('profesiones', 'publicaciones.id_profesion', '=', 'profesiones.id_profesion')
+            ->whereIn('rating.id_publicaciones', $publicaciones)
+            ->select(
+                'profesiones.nombre_profesion as profesion',
+                DB::raw('ROUND(AVG(rating.rating), 2) as promedio'),
+                DB::raw('COUNT(rating.id_rating) as cantidad_votos')
+            )
+            ->groupBy('profesiones.id_profesion', 'profesiones.nombre_profesion')
+            ->get();
     }
 
-    return view('laburapp.perfil', compact('usuario', 'promedio'));
+    return view('laburapp.verPerfilDeOtro', [
+    'usuario' => $usuario,
+    'promedioGeneral' => $promedioGeneral,
+    'promedioPorProfesion' => $promedioPorProfesion
+]);
 }
 
 }

@@ -20,7 +20,7 @@ Route::get('/perfil', [PerfilController::class, 'verPerfil'])->name('perfil');
 Route::get('inicioSesion', function () {return view('laburapp.inicioSesion');})->name('inicioSesion.form');
 Route::post('inicioSesion', [loginController::class, 'autenticar'])->name('inicioSesion.usuario');
 Route::get('cerrarSesion', [loginController::class, 'cerrarSesion'])->name('cerrarSesion.usuario');
-
+Route::get('verPerfilDeOtro/{id}', [usuarioController::class, 'verPerfilDeOtroUsuario'])->name('ver.perfilDeOtroUsuario');
 
 Route::post('registroUsuario', [RegistroController::class, 'guardarUsuario'])->name('registro.guardar');
 Route::get('registroUsuario', [RegistroController::class, 'formularioRegistro'])->name('registro.formulario');
@@ -29,6 +29,7 @@ Route::get('modificarUsuario', [usuarioController::class, 'editarPerfil'])->name
 Route::post('modificarUsuario', [usuarioController::class, 'modificar'])->name('actualizar.usuario');
 Route::post('eliminarUsuario', [usuarioController::class, 'eliminarPerfil'])->name('eliminar.usuario');
 Route::get('verPerfilDeOtro/{id}', [usuarioController::class, 'verUsuario'])->name('ver.usuario');
+
 
 //----------- PUBLICACIONES ---------------//
 Route::get('publicaciones', [publicacionController::class, 'verFormulario'])->name('formulario.publicacion');

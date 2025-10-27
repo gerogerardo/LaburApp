@@ -8,7 +8,7 @@
     
     @auth
     
- {{-- <div class='bloque-perfil'>
+{{-- <div class='bloque-perfil'>
         <img src={{ asset('storage/' . $usuario->foto_perfil )}} class='fotoperfil'>
         <input class='boton' type='button' value='Modificar perfil' onClick='location="{{ route('formulario.modificar') }}"'>
         <input class='boton' type='button' value='Ver solicitudes' onClick='location=\"solicitudes.php\"'>
@@ -25,6 +25,26 @@
     </div>
     </div>
     
+@if($promedioGeneral > 0)
+    <p><h4>Promedio general:</h4>{{ number_format($promedioGeneral, 1)  }} / 5 ⭐</p>
+@else
+    <p><h4>Promedio general:</h4> Aún no tiene calificaciones.</p>
+@endif
+
+<div class='contenedor-datos'>
+    <h4>Promedio por profesión:</h4>
+
+    @if ($promedioPorProfesion->isNotEmpty())
+        <ul>
+            @foreach ($promedioPorProfesion as $dato)
+                <li>{{ $dato->profesion }} → {{ number_format($dato->promedio, 1) }} / 5 ⭐</li>
+            @endforeach
+        </ul>
+    @else
+        <p>No hay calificaciones por profesión aún.</p>
+    @endif
+</div>
+
     @endauth
     @guest
         <p>No hay usuario logueado, inicia sesión</p>

@@ -34,18 +34,19 @@ class solicitudesController extends Controller
                             ->exists();
 
     $publicacion = Publicacion::find($id_publicaciones);
+    // Evitar que el usuario se solicite a sí mismo
+    if ($publicacion->id_usuario == $id_usuario) {
+        return redirect()->back()->with('error', 'No podés solicitarte a vos mismo');
+    }
 
-    $id_Usuario_publicacion = $publicacion->id_usuario;                        
+    /*$id_Usuario_publicacion = $publicacion->id_usuario;
 
-    if ( $id_Usuario_publicacion  == $id_usuario) {
-       return response("<script>
-       alert('No podés solicitarte a vos mismo');
-       window.location.href = '" . url()->previous() . "';
-       </script>");
+    if ( $id_Usuario_publicacion == $id_usuario){ 
         
-      }
-
-
+        return redirect()->back()->with('error', 'no podes solicitarte a vos mismo');
+    };*/                            
+    
+    
 
     if (!$existe) {
         Solicitudes::create([
@@ -55,9 +56,7 @@ class solicitudesController extends Controller
         
 
     return redirect()->route('index')->with('success', 'Solicitud exitosa');}
-    return redirect()->route('index')->with('success', 'Ya se ha solicitado esta publicacion');
-                                                                                                 
-    
-     
+    return redirect()->route('index')->with('error', 'Ya se ha solicitado esta publicacion');
+
 }
 }

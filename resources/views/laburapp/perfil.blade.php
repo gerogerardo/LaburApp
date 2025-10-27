@@ -22,9 +22,9 @@
         <div class='contenedor-datos'><h4>Localidad</h4><p>{{ auth()->user()->localidad->nombre_localidad }}</p></div>
 
 @if($promedioGeneral > 0)
-    <p>Promedio general: {{ number_format($promedioGeneral, 2) }}</p>
+    <p><h4>Promedio general:</h4>{{ number_format($promedioGeneral, 1)  }} / 5 ⭐</p>
 @else
-    <p>Aún no tiene calificaciones.</p>
+    <p><h4>Promedio general:</h4> Aún no tiene calificaciones.</p>
 @endif
 
 <div class='contenedor-datos'>
@@ -33,7 +33,7 @@
     @if ($promedioPorProfesion->isNotEmpty())
         <ul>
             @foreach ($promedioPorProfesion as $dato)
-                <li>{{ $dato->profesion }} → {{ number_format($dato->promedio, 2) }} / 5</li>
+                <li>{{ $dato->profesion }} → {{ number_format($dato->promedio, 1) }} / 5 ⭐</li>
             @endforeach
         </ul>
     @else
