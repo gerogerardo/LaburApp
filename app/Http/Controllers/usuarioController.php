@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 
+
 class usuarioController extends Controller
 {
     public function modificar(Request $request)
@@ -79,12 +80,10 @@ class usuarioController extends Controller
             $usuario = $publicacion->usuario;
             return view('laburapp.verPerfilDeOtro', compact('usuario'));
     }
-
-//funciones de rating
     }
+
 public function verPerfilDeOtroUsuario($id)
 {
-    /** @var \App\Models\Usuario $usuario */
     $usuario = Usuario::findOrFail($id);
 
     // Obtener IDs de publicaciones del usuario
@@ -101,7 +100,7 @@ public function verPerfilDeOtroUsuario($id)
             ->avg('rating');
         $promedioGeneral = $promedioGeneral ? round($promedioGeneral, 2) : 0;
 
-        // ✅ Promedio por profesión con join
+        // Promedio por profesión con join
         $promedioPorProfesion = Rating::join('publicaciones', 'rating.id_publicaciones', '=', 'publicaciones.id_publicaciones')
             ->join('profesiones', 'publicaciones.id_profesion', '=', 'profesiones.id_profesion')
             ->whereIn('rating.id_publicaciones', $publicaciones)
@@ -115,10 +114,9 @@ public function verPerfilDeOtroUsuario($id)
     }
 
     return view('laburapp.verPerfilDeOtro', [
-    'usuario' => $usuario,
-    'promedioGeneral' => $promedioGeneral,
-    'promedioPorProfesion' => $promedioPorProfesion
-]);
+        'usuario' => $usuario,
+        'promedioGeneral' => $promedioGeneral,
+        'promedioPorProfesion' => $promedioPorProfesion
+    ]);
 }
-
 }

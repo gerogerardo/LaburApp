@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('rating', function (Blueprint $table) {
-            $table->tinyInteger('rating')->after('id_rating');
-            $table->text('comentario')->nullable()->after('id_publicaciones');
-        });
+        // Esta migración ya no es necesaria porque las columnas
+        // se agregan en la migración de creación de tabla
+        // Por lo tanto, no hacer nada
     }
 
     /**
@@ -22,8 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('rating', function (Blueprint $table) {
-            //
-        });
+        // No hacer nada
     }
 };

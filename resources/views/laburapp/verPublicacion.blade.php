@@ -12,10 +12,21 @@
             <p>{{ $publicacion->descripcion }}</p>
             <p>{{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }}</p>
             <p>Publicado por: 
-                <input type="button" class="boton" 
-                    value="{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido }}" 
-                    onclick="location.href='{{ route('ver.usuario', $publicacion->id_publicaciones) }}'">
-            </p>
+    @php
+        $esMiPerfil = Auth::check() && Auth::id() === $publicacion->usuario->id_usuario;
+    @endphp
+
+    @if ($esMiPerfil)
+        <input type="button" class="boton" 
+            value="{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido }}" 
+            onclick="location.href='{{ route('perfil') }}'">
+    @else
+        <input type="button" class="boton" 
+            value="{{ $publicacion->usuario->nombre }} {{ $publicacion->usuario->apellido }}" 
+            onclick="location.href='{{ route('ver.perfilDeOtroUsuario', $publicacion->usuario->id_usuario) }}'">
+    @endif
+</p>
+
 
             <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen de la publicación" id="fotopubli">
 
@@ -32,13 +43,18 @@
 
 
 
-{{-- Mensajes de éxito/error --}}
-@if(session('success'))
-    <div class="alerta exito">{{ session('success') }}</div>
+@if (session('error'))
+    <script>
+        alert("{{ session('error') }}");
+    </script>
 @endif
-@if(session('error'))
-    <div class="alerta error">{{ session('error') }}</div>
+
+@if (session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
 @endif
+
 
 {{-- Formulario de Calificación --}}
 @auth

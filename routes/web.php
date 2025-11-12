@@ -28,7 +28,7 @@ Route::get('registroUsuario', [RegistroController::class, 'formularioRegistro'])
 Route::get('modificarUsuario', [usuarioController::class, 'editarPerfil'])->name('formulario.modificar');
 Route::post('modificarUsuario', [usuarioController::class, 'modificar'])->name('actualizar.usuario');
 Route::post('eliminarUsuario', [usuarioController::class, 'eliminarPerfil'])->name('eliminar.usuario');
-Route::get('verPerfilDeOtro/{id}', [usuarioController::class, 'verUsuario'])->name('ver.usuario');
+Route::get('verPerfilDeOtro/{id}', [usuarioController::class, 'verPerfilDeOtroUsuario'])->name('ver.perfilDeOtroUsuario');
 
 
 //----------- PUBLICACIONES ---------------//

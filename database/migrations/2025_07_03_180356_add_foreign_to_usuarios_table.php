@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->foreign('id_localidad')->references('id_localidad')->on('localidades')->onDelete('restrict');
-            $table->foreign('id_rating')->references('id_rating')->on('rating')->onDelete('restrict');
+            $table->foreign('id_localidad')
+                ->references('id_localidad')
+                ->on('localidades')
+                ->onDelete('restrict');
+            
+            $table->foreign('id_rating')
+                ->references('id_rating')
+                ->on('rating')
+                ->onDelete('set null');  // Cambiar de restrict a set null
         });
     }
 
@@ -22,8 +29,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::table('usuarios', function (Blueprint $table) {
-            //
+            $table->dropForeignKey('usuarios_id_localidad_foreign');
+            $table->dropForeignKey('usuarios_id_rating_foreign');
         });
+        
+        Schema::enableForeignKeyConstraints();
     }
 };

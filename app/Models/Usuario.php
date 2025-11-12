@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Usuario extends Authenticatable
 {
-
+use HasFactory;
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
 

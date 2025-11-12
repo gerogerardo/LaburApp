@@ -24,39 +24,32 @@ class solicitudesController extends Controller
     }
     return redirect()->route('login');
 }
-    
 
-    public function solicitar($id_publicaciones)
-    {
+public function solicitar($id_publicaciones)
+{
     $id_usuario = Auth::id(); 
-    $existe = Solicitudes::where('id_usuario', $id_usuario)
-                            ->where('id_publicaciones', $id_publicaciones)
-                            ->exists();
+    $publicacion = Publicacion::findOrFail($id_publicaciones);
 
-    $publicacion = Publicacion::find($id_publicaciones);
     // Evitar que el usuario se solicite a sí mismo
     if ($publicacion->id_usuario == $id_usuario) {
-        return redirect()->back()->with('error', 'No podés solicitarte a vos mismo');
+        return redirect()->back()->with('error', 'No puedes solicitar una publicación creada por ti mismo');
     }
 
-    /*$id_Usuario_publicacion = $publicacion->id_usuario;
-
-    if ( $id_Usuario_publicacion == $id_usuario){ 
-        
-        return redirect()->back()->with('error', 'no podes solicitarte a vos mismo');
-    };*/                            
-    
-    
+    // Verificar si ya existe una solicitud
+    $existe = Solicitudes::where('id_usuario', $id_usuario)
+        ->where('id_publicaciones', $id_publicaciones)
+        ->exists();
 
     if (!$existe) {
         Solicitudes::create([
             'id_usuario' => $id_usuario,
             'id_publicaciones' => $id_publicaciones,
-        ]);  
-        
+        ]);
 
-    return redirect()->route('index')->with('success', 'Solicitud exitosa');}
-    return redirect()->route('index')->with('error', 'Ya se ha solicitado esta publicacion');
+        return redirect()->route('index')->with('success', 'Solicitud exitosa');
+    }
 
+    return redirect()->route('index')->with('error', 'Ya has solicitado esta publicación');
 }
+
 }
