@@ -52,4 +52,16 @@ public function solicitar($id_publicaciones)
     return redirect()->route('index')->with('error', 'Ya has solicitado esta publicación');
 }
 
+public function Mis_solicitudes(){
+   if(Auth::check()){
+    $id_usuario = Auth::id();
+
+    $solicitudes = Solicitudes::where('id_usuario', $id_usuario)->with(['publicacion'])->get();
+        return view ('laburapp.Mis_solicitudes', compact('solicitudes'));
+    
+    }else {
+            return redirect()->route('inicioSesion.form')->withErrors(['error' => 'Debes iniciar sesión para ver tus publicaciones.']); 
+        }
+}
+
 }

@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('verSolicitudes', [solicitudesController::class,'verSolicitudes'])->name('ver.solicitudes');
 Route::get('solicitar/{id_publicaciones}', [solicitudesController::class,'solicitar'])->name('solicitar.publicacion');
+Route::get('Mis_solicitudes', [solicitudesController::class,'Mis_solicitudes'])->name('Mis_solicitudes');
 
 
 require __DIR__.'/auth.php';

@@ -22,6 +22,7 @@
                     <li><a href="{{  route('index')}}" alt="indice">Principal</a></li>
                     <li><a href="{{ route ('perfil')}}" alt="Ver Perfil">Ver Perfil</a></li>
                     <li><a href="{{  route('misPublicaciones')}}" alt="Ver publicaciones"> Mis publicaciones</a></li>
+                    <li><a href="{{  route('Mis_solicitudes')}}" alt="Ver mis solicitudes"> Mis solicitudes</a></li>
                     </ul>
             </nav>
             <div class="perfil"> 
