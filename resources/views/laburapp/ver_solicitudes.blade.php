@@ -12,8 +12,9 @@
     
     <div class='bloque-solicitud'>
         <div class='texto-solicitudes'>
-            <p>Tienes una solicitud de {{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}} para la publicacion de <strong> "{{ $solicitud->publicacion->nombre_publicacion }}"</strong></p>
-            <p>Solicitado el día: </p>
+            <p>Tienes una solicitud de {{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}} para la publicacion de <strong> "{{ $solicitud->publicacion->nombre_publicacion }}"</strong>
+                <br> <br>
+            Solicitado el día: </p>
         </div>
     </div>
 @endforeach

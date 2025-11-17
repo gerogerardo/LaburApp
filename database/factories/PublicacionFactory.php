@@ -17,7 +17,7 @@ class PublicacionFactory extends Factory
             'fecha' => $this->faker->dateTimeBetween('-6 months', 'now'),
             'foto_portada' => 'imagenes/default-publication.jpg',
             'id_usuario' => $this->faker->numberBetween(1, 15),
-            'id_profesion' => $this->faker->numberBetween(1, 5),
+            'id_profesion' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

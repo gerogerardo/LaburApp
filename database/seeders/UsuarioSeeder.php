@@ -9,10 +9,10 @@ class UsuarioSeeder extends Seeder
 {
     public function run(): void
     {
-        // Crear 15 usuarios
+
         Usuario::factory(15)->create();
 
-        // Crear un usuario específico para pruebas
+
         Usuario::create([
             'nombre' => 'Juan',
             'apellido' => 'Pérez',

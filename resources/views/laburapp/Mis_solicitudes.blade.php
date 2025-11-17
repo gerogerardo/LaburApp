@@ -3,13 +3,13 @@
 @section('contenido')
 <div class='seccion'>
 @if ($solicitudes->isEmpty())
-<p>no has enviado ninguna solicitud</p>
+<p>No has enviado ninguna solicitud</p>
 @else
-    <p>mis solicitudes</p>
+    <h3>Solicitudes enviadas</h3>
     @foreach ($solicitudes as $solicitud)
     <div class='bloque-solicitud'>
         <div class='texto-solicitudes'>
-            <p>Enviaste una solicitud a "{{ $solicitud->publicacion->nombre_publicacion }}" </p>
+            <p>Enviaste una solicitud a "{{$solicitud->publicacion->nombre_publicacion}}" </p>
         </div>
     </div>
 @endforeach
