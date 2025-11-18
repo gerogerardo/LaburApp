@@ -11,6 +11,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\solicitudesController;
 use App\Http\Controllers\PerfilController;
 
+Route::get('/', [indexController::class,'verTodasPublicaciones'])->name('home');
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
 
 Route::get('/perfil', [PerfilController::class, 'verPerfil'])->name('perfil');
