@@ -9,7 +9,7 @@
     @foreach ($solicitudes as $solicitud)
     <div class='bloque-solicitud'>
         <div class='texto-solicitudes'>
-            <p>Enviaste una solicitud a "{{$solicitud->publicacion->nombre_publicacion}}" </p>
+            <p>Enviaste una solicitud a "<strong>{{$solicitud->publicacion->nombre_publicacion}}</strong>" </p>
         </div>
     </div>
 @endforeach

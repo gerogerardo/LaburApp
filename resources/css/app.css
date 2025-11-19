@@ -15,7 +15,7 @@
 /* -------------------------GENERALES----------------------- */
 
 body {
-    background-color: #fffbfd;
+    background-color: #ebebebba;
     font-family: Arial, Helvetica, sans-serif;
     color: #333;
 }
@@ -28,7 +28,7 @@ a,header {
 }
 
 header {
-    background-color: #362417;
+    background-color: #2F2F30;
     color: white;
     display: flex;
     height: 180px;
@@ -82,7 +82,7 @@ header {
   }
 
   header .nav-bar ul li a:hover {
-    background-color: #cfac85;
+    background-color: #a6a19b;
     color: black;
 }
 

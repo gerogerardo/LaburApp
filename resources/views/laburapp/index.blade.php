@@ -21,12 +21,12 @@
     <div class="publicaciones">
         @foreach($publicacionesTotales as $publicacion)
             <div class="link">
-                <strong>Título:{{ $publicacion->nombre_publicacion }}</strong><br>
-                Descripcion:{{ $publicacion->descripcion }}<br>
-                Profesión: {{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }} <br>
-                Usuario: {{ $publicacion->usuario->nombre}} {{$publicacion->usuario->apellido}}<br>
+               <p><strong>Título:</strong> {{ $publicacion->nombre_publicacion }} <br>  </p>
+           <p> <strong>Descripcion: </strong> {{ $publicacion->descripcion }} <br> </p>
+             <p> <strong>Profesión: </strong> {{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }} <br> </p>
+               <p> <strong>Usuario: </strong>{{ $publicacion->usuario->nombre}} {{$publicacion->usuario->apellido}}<br> </p>
                 <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen de la publicación" width="150" id="fotopubli"><br>
-                <input type="button" class="boton" value="Ver publicación" onclick="location.href='{{ route('ver.publicacion', $publicacion->id_publicaciones) }}'">
+                <input type="button" class="boton" value="Ver publicación" onclick="location.href='{{ route('ver.publicacion', $publicacion->id_publicaciones) }}'"> 
             </div>
             @endforeach
         </div>

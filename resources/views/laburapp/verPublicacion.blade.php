@@ -1,17 +1,13 @@
 @extends('layouts.plantilla')
 @section('titulo','Ver Publicación')
 @section('contenido')
-<h1>Ver publicación</h1>  
 
-
-
-<div class="seccion">
     <div class="publicaciones">
         <div class="link">
-            <h2>{{ $publicacion->nombre_publicacion }}</h2>
-            <p>{{ $publicacion->descripcion }}</p>
-            <p>{{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }}</p>
-            <p>Publicado por: 
+            <p><strong>Título:</strong> {{ $publicacion->nombre_publicacion }} <br>  </p>
+            <p> <strong>Descripcion: </strong> {{ $publicacion->descripcion }} <br> </p>
+            <p> <strong>Profesión: </strong> {{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }} <br> </p>
+            <p> <strong>Publicado por: </strong>
     @php
         $esMiPerfil = Auth::check() && Auth::id() === $publicacion->usuario->id_usuario;
     @endphp
@@ -37,7 +33,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <hr>
 
@@ -55,17 +51,17 @@
     </script>
 @endif
 
-
-{{-- Formulario de Calificación --}}
+<div class="link">
+<!-- {{-- Formulario de Calificación --}} -->
 @auth
     @if($publicacion->id_usuario !== Auth::id())
-        <div class="seccion">
+        <div >
             <h3>Calificar esta publicación</h3>
             <form action="{{ route('ratings.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="id_publicaciones" value="{{ $publicacion->id_publicaciones }}">
 
-                <div class="campo">
+                <div class="campo" style="padding-bottom: 2vh;">
                     <label for="rating">Calificación (1-5):</label>
                     <select name="rating" id="rating" required>
                         <option value="">Selecciona...</option>
@@ -75,7 +71,7 @@
                     </select>
                 </div>
 
-                <div class="campo">
+                <div class="campo" style="padding-bottom: 2vh;">
                     <label for="comentario">Comentario:</label> <br>
                     <textarea maxlength="80" name="comentario" id="comentario"></textarea>  
                 </div>
@@ -87,7 +83,8 @@
     @endif
 @endauth
 
-<div class="recuadro-promedio" style="background-color: #f0f8ff; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+<div>
+    <div style="padding-bottom: 2vh;">
     <strong>Opiniones de la publicacion</strong><br>
     @if($publicacion->ratings->count() > 0)
         {{ $publicacion->averageRating() }} ⭐ ({{ $publicacion->ratings->count() }} calificaciones)
@@ -96,8 +93,8 @@
     @endif
 </div>
 
-{{-- Lista de calificaciones --}}
-<div class="seccion">
+<!-- {{-- Lista de calificaciones --}} -->
+
     <h3>Calificaciones</h3>
     @if($publicacion->ratings->count() > 0)
         <ul class="lista-calificaciones">
@@ -123,5 +120,5 @@
         <p>No hay calificaciones todavía.</p>
     @endif
 </div>
-   
+   </div>
 @endsection
