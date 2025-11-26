@@ -29,6 +29,14 @@
                 <input type="button" class="boton" value="Ver publicación" onclick="location.href='{{ route('ver.publicacion', $publicacion->id_publicaciones) }}'"> 
             </div>
             @endforeach
+              @auth
+    @if(auth()->check() && auth()->user()->rol === 'moderador')
+        <!-- INTERFAZ SOLO PARA MODERADORES -->
+           <div class="card">
+            <p>Opciones avanzadas solo visibles para moderadores.</p>
+    @endif
+@endauth
+            </div>
         </div>
             {{$publicacionesTotales->links('pagination::bootstrap-5') }}    
     </div>
