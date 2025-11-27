@@ -23,6 +23,8 @@
                     <li><a href="{{ route ('perfil')}}" alt="Ver Perfil">Ver Perfil</a></li>
                     <li><a href="{{  route('misPublicaciones')}}" alt="Ver publicaciones"> Mis publicaciones</a></li>
                     <li><a href="{{  route('Mis_solicitudes')}}" alt="Ver mis solicitudes"> Mis solicitudes</a></li>
+                    <li><a > Reportes</a></li>
+                   
                     </ul>
             </nav>
             <div class="perfil"> 
@@ -58,3 +60,4 @@
         <a target="_blank" href="https://www.whatsapp.com/?lang=es_LA"><img class="btn-wsp" src="storage/imagenes/wsp.png" alt="Logo de wsp"> </a>
         <script src="{{  asset('js/script.js')}}"></script>
     </footer>
+

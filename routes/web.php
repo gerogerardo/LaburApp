@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\solicitudesController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ReporteController;
 
 Route::get('/', [indexController::class,'verTodasPublicaciones'])->name('home');
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
@@ -35,12 +36,17 @@ Route::get('verPerfilDeOtro/{id}', [usuarioController::class, 'verPerfilDeOtroUs
 //----------- PUBLICACIONES ---------------//
 Route::get('publicaciones', [publicacionController::class, 'verFormulario'])->name('formulario.publicacion');
 Route::post('publicaciones', [publicacionController::class, 'crearPublicacion'])->name('crear.publicacion');
-Route::get('misPublicaciones', [publicacionController::class, 'misPublicaciones'])->name('misPublicaciones')>
+Route::get('misPublicaciones', [publicacionController::class, 'misPublicaciones'])->name('misPublicaciones');
 Route::post('eliminarPublicacion/{id}', [publicacionController::class, 'eliminarPublicacion'])->name('eliminar.publicacion');
 
 Route::get('modificarPublicaciones/{id}', [publicacionController::class, 'cargarFormularioModificar'])->name('formulario.modificar.publicacion');
 Route::post('modificarPublicaciones/{id}', [publicacionController::class, 'modificarPublicacion'])->name('modificar.publicacion');
 Route::get('verPublicacion/{id}', [publicacionController::class, 'verPublicacion'])->name('ver.publicacion');
+
+
+/* -------------------------------REPORTE------------------------- */
+Route::get('reportes', [ReporteController::class, 'reporte'])->name('reportes');
+Route::get('reportes/pdf', [ReporteController::class, 'ExportarPdf'])->name('pdf');
 
 
 
