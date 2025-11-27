@@ -10,7 +10,7 @@
         <img src="{{ asset('storage/' . $usuario->foto_perfil ) }}" class='fotoperfil'>
         <input class='boton' type='button' value='Modificar perfil' onClick='location="{{ route('formulario.modificar') }}"'>
         <input class='boton' type='button' value='Ver solicitudes' onClick='location="{{ route('ver.solicitudes') }}"'>
-        <input type="button" class="boton" value="Crear publicación" onClick='location="{{ route('formulario.publicacion') }}"'>
+        
     </div>
 
     <div class='info'>

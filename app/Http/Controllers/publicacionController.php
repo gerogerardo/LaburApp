@@ -120,15 +120,17 @@ public function modificarPublicacion(Request $request, $id)
     return redirect()->route('misPublicaciones')->with('success', 'Publicación modificada correctamente');
 }
 
-public function buscarPublicaciones(Request $request)
+public function buscarPublicaciones(Request $request) //tambien busca usuarios
 {
     $busqueda = $request->input('busq');
+    $usuarios = Usuario::where('nombre', 'like', '%'. $busqueda .'%')->orWhere('apellido', 'like', '%' . $busqueda . '%')->paginate(3, ['*'], 'usuarios_page');
     $publicaciones = Publicacion::where('nombre_publicacion', 'like', '%' . $busqueda . '%')
         ->orWhere('descripcion', 'like', '%' . $busqueda . '%')
-        ->with(['profesion','usuario'])
-        ->paginate(6);
+        ->with(['profesion','usuario'])->paginate(6, ['*'], 'publicaciones_page');
+ 
 
-    return view('laburapp.buscarPublicaciones', compact('publicaciones'));
+
+    return view('laburapp.buscarPublicaciones', compact('publicaciones','usuarios'));
 }
 
 public function verPublicacion($id){
