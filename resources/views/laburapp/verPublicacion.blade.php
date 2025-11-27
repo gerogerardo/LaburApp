@@ -27,7 +27,9 @@
             <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen de la publicación" id="fotopubli">
 
             <div style="margin-top: 15px;">
+                @if(auth()->check() && auth()->user()->rol === 'usuario')
                 <input type="button" class="boton" value="Solicitar" onclick="location.href='{{ route('solicitar.publicacion', $publicacion->id_publicaciones) }}'" >
+                @endif
                 <input type="button" class="boton" value="Volver" onclick="location.href='{{ route('buscar.publicaciones') }}'">
                 
             </div>
@@ -50,75 +52,76 @@
         alert("{{ session('success') }}");
     </script>
 @endif
+@if(auth()->check() && auth()->user()->rol === 'usuario')
+    <div class="link">
+    <!-- {{-- Formulario de Calificación --}} -->
+    @auth
+        @if($publicacion->id_usuario !== Auth::id())
+            <div >
+                <h3>Calificar esta publicación</h3>
+                <form action="{{ route('ratings.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_publicaciones" value="{{ $publicacion->id_publicaciones }}">
 
-<div class="link">
-<!-- {{-- Formulario de Calificación --}} -->
-@auth
-    @if($publicacion->id_usuario !== Auth::id())
-        <div >
-            <h3>Calificar esta publicación</h3>
-            <form action="{{ route('ratings.store') }}" method="POST">
-                @csrf
-                <input type="hidden" name="id_publicaciones" value="{{ $publicacion->id_publicaciones }}">
+                    <div class="campo" style="padding-bottom: 2vh;">
+                        <label for="rating">Calificación (1-5):</label>
+                        <select name="rating" id="rating" required>
+                            <option value="">Selecciona...</option>
+                            @for($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">{{ $i }} ⭐</option>
+                            @endfor
+                        </select>
+                    </div>
 
-                <div class="campo" style="padding-bottom: 2vh;">
-                    <label for="rating">Calificación (1-5):</label>
-                    <select name="rating" id="rating" required>
-                        <option value="">Selecciona...</option>
-                        @for($i = 1; $i <= 5; $i++)
-                            <option value="{{ $i }}">{{ $i }} ⭐</option>
-                        @endfor
-                    </select>
-                </div>
+                    <div class="campo" style="padding-bottom: 2vh;">
+                        <label for="comentario">Comentario:</label> <br>
+                        <textarea maxlength="80" name="comentario" id="comentario"></textarea>  
+                    </div>
 
-                <div class="campo" style="padding-bottom: 2vh;">
-                    <label for="comentario">Comentario:</label> <br>
-                    <textarea maxlength="80" name="comentario" id="comentario"></textarea>  
-                </div>
+                    <input type="submit" class="boton" value="Enviar Calificación">
+                </form>
+            </div>
+            <hr>
+        @endif
+    @endauth
 
-                <input type="submit" class="boton" value="Enviar Calificación">
-            </form>
-        </div>
-        <hr>
-    @endif
-@endauth
+    <div>
+        <div style="padding-bottom: 2vh;">
+        <strong>Opiniones de la publicacion</strong><br>
+        @if($publicacion->ratings->count() > 0)
+            {{ $publicacion->averageRating() }} ⭐ ({{ $publicacion->ratings->count() }} calificaciones)
+        @else
+            No hay calificaciones todavía.
+        @endif
+    </div>
 
-<div>
-    <div style="padding-bottom: 2vh;">
-    <strong>Opiniones de la publicacion</strong><br>
-    @if($publicacion->ratings->count() > 0)
-        {{ $publicacion->averageRating() }} ⭐ ({{ $publicacion->ratings->count() }} calificaciones)
-    @else
-        No hay calificaciones todavía.
-    @endif
-</div>
+    <!-- {{-- Lista de calificaciones --}} -->
 
-<!-- {{-- Lista de calificaciones --}} -->
+        <h3>Calificaciones</h3>
+        @if($publicacion->ratings->count() > 0)
+            <ul class="lista-calificaciones">
+                @foreach($publicacion->ratings as $rating)
+                    <li class="item-calificacion {{ Auth::check() && $rating->id_usuario == Auth::id() ? 'mi-calificacion' : '' }}">
+                        <strong>{{ $rating->user?->nombre }} {{ $rating->user?->apellido }}</strong>  
+                            — {{ $rating->rating }} ⭐  
+                        <br>
+                        <em>{{ $rating->comentario }}</em>
 
-    <h3>Calificaciones</h3>
-    @if($publicacion->ratings->count() > 0)
-        <ul class="lista-calificaciones">
-            @foreach($publicacion->ratings as $rating)
-                <li class="item-calificacion {{ Auth::check() && $rating->id_usuario == Auth::id() ? 'mi-calificacion' : '' }}">
-                    <strong>{{ $rating->user?->nombre }} {{ $rating->user?->apellido }}</strong>  
-                        — {{ $rating->rating }} ⭐  
-                    <br>
-                    <em>{{ $rating->comentario }}</em>
+                        @if(Auth::check() && $rating->id_usuario == Auth::id())
+                            <form action="{{ route('ratings.destroy', $rating->id_rating) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="boton eliminar" value="Eliminar">
+                            </form>
+                        @endif
+                    </li>
+                @endforeach
 
-                    @if(Auth::check() && $rating->id_usuario == Auth::id())
-                        <form action="{{ route('ratings.destroy', $rating->id_rating) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="boton eliminar" value="Eliminar">
-                        </form>
-                    @endif
-                </li>
-            @endforeach
-
-        </ul>
-    @else
-        <p>No hay calificaciones todavía.</p>
-    @endif
-</div>
+            </ul>
+        @else
+            <p>No hay calificaciones todavía.</p>
+        @endif
+    </div>
+@endif
    </div>
 @endsection

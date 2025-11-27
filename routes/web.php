@@ -11,6 +11,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\solicitudesController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\moderadorController;
 
 Route::get('/', [indexController::class,'verTodasPublicaciones'])->name('home');
 Route::get('index', [indexController::class,'verTodasPublicaciones'])->name('index');
@@ -76,6 +77,10 @@ Route::middleware('auth')->group(function () {
 Route::get('verSolicitudes', [solicitudesController::class,'verSolicitudes'])->name('ver.solicitudes');
 Route::get('solicitar/{id_publicaciones}', [solicitudesController::class,'solicitar'])->name('solicitar.publicacion');
 Route::get('Mis_solicitudes', [solicitudesController::class,'Mis_solicitudes'])->name('Mis_solicitudes');
+
+ //----------- moderador ---------------//
+
+Route::get('/moderador', [moderadorController::class, 'mod'])->name('moderador');
 
 
 require __DIR__.'/auth.php';

@@ -26,7 +26,8 @@ public function guardarUsuario(Request $request)
         'mail' => 'required|email',
         'telefono' => 'required',
         'localidad' => 'required',
-        'imagen' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'imagen' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
+       
     ]);
      if ($request->hasFile('imagen') && $request->file('imagen')->getSize() > 2048 * 1024) {
         return redirect()->back()
@@ -52,6 +53,7 @@ public function guardarUsuario(Request $request)
         'domicilio' => '',
         'informacion' => '',
         'id_rating' => null,
+        'rol' =>"usuario",
     ]);
     return redirect()->route('inicioSesion.usuario')->with('success', 'Usuario registrado correctamente');
 }

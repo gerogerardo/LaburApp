@@ -13,7 +13,7 @@
     @section('contenido')
         <h1 class="titulo">BIENVENIDO A LABURAPP</h1>
         <form class="busqueda" action="{{route('buscar.publicaciones')}}" method="GET">
-            <input class="cajaDeBusqueda" type="search" name="busq" class="caja" placeholder="Busqueda por palabra" required>
+            <input class="cajaDeBusqueda" type="search" name="busq" class="caja" placeholder="Búsqueda por palabra" required>
             <input class="btn-busqueda" type="submit" value="Enviar" class="boton" onclick="location.href='{{ route('buscar.publicaciones') }}'">
         </form>
     </div>
@@ -29,15 +29,10 @@
                 <input type="button" class="boton" value="Ver publicación" onclick="location.href='{{ route('ver.publicacion', $publicacion->id_publicaciones) }}'"> 
             </div>
             @endforeach
-              @auth
-    @if(auth()->check() && auth()->user()->rol === 'moderador')
-        <!-- INTERFAZ SOLO PARA MODERADORES -->
-           <div class="card">
-            <p>Opciones avanzadas solo visibles para moderadores.</p>
-    @endif
-@endauth
-            </div>
+              
+            
         </div>
+        <div>
             {{$publicacionesTotales->links('pagination::bootstrap-5') }}    
     </div>
     </main> 

@@ -3,7 +3,10 @@
 @section('contenido')
 <div class='seccion'>
 @if ($solicitudes->isEmpty())
-<p>No has enviado ninguna solicitud</p>
+<h1>Solicitudes enviadas</h1>
+<div class="link">
+    <p style="font-size: large;">No has enviado ninguna solicitud</p>
+</div>
 @else
     <h3>Solicitudes enviadas</h3>
     @foreach ($solicitudes as $solicitud)
@@ -13,6 +16,8 @@
         </div>
     </div>
 @endforeach
-    </div>
+    </div> 
 @endif
 @endsection
+
+

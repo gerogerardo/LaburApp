@@ -11,7 +11,7 @@
 
             <!-- FOTO DE PERFIL -->
             <div class="contenedor-input div1">
-                <label for="foto_perfil"><strong>Foto de Perfil:</strong></label>
+                <label for="foto_perfil_modif"><strong>Foto de Perfil:</strong></label> <br>
                 @if(Auth::user()->foto_perfil)
                     <img id="imagenPreview" src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" class="fotoperfil" >
                 @else

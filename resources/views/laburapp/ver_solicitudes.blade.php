@@ -2,8 +2,11 @@
 @section('titulo','Solicitudes')
 @section('contenido')
 <div class='seccion'>
+    <h1>Solicitudes recibidas</h1>
 @if ($solicitudes->isEmpty())
-    <h3>No tienes solicitudes recibidas</h3>
+<div class="link">
+    <p style="font-size: large;">No tienes solicitudes recibidas</p>
+</div>
 @else
 
 <h3>Solicitudes recibidas</h3>
@@ -19,5 +22,9 @@
     </div>
 @endforeach
     </div>
+
+  
+
+
     @endif
     @endsection

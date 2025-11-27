@@ -25,6 +25,13 @@
                     <li><a href="{{  route('Mis_solicitudes')}}" alt="Ver mis solicitudes"> Mis solicitudes</a></li>
                     <li><a > Reportes</a></li>
                    
+                    @auth
+                    @if(auth()->check() && auth()->user()->rol === 'moderador')
+                            <!-- INTERFAZ SOLO PARA MODERADORES -->
+                    <li><a href="{{  route('moderador')}}">Administracion</a></li>    
+                @endif
+                @endauth
+                    
                     </ul>
             </nav>
             <div class="perfil"> 

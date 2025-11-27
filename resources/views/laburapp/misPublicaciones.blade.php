@@ -4,8 +4,11 @@
 <div class="seccion">
     <h1>Mis publicaciones</h1>
 
+    <input type="button" class="boton" value="Crear publicación" onClick='location="{{ route('formulario.publicacion') }}"'>
     @if ($publicaciones->isEmpty())
-        <p>No tenés publicaciones todavía.</p>
+        <div class="link">
+        <p style="font-size: large;">No tenés publicaciones todavía.</p>
+        </div>
         </div>
     @else
         <div class="seccion">
