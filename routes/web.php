@@ -45,9 +45,9 @@ Route::post('modificarPublicaciones/{id}', [publicacionController::class, 'modif
 Route::get('verPublicacion/{id}', [publicacionController::class, 'verPublicacion'])->name('ver.publicacion');
 
 
-/* -------------------------------REPORTE------------------------- */
-Route::get('reportes', [ReporteController::class, 'reporte'])->name('reportes');
-Route::get('reportes/pdf', [ReporteController::class, 'ExportarPdf'])->name('pdf');
+/* /* /* -------------------------------REPORTE------------------------- */
+/* Route::get('reportes', [ReporteController::class, 'reporte'])->name('reportes');
+Route::get('reportes/pdf', [ReporteController::class, 'ExportarPdf'])->name('pdf'); */ 
 
 
 
@@ -80,7 +80,8 @@ Route::get('Mis_solicitudes', [solicitudesController::class,'Mis_solicitudes'])-
 
  //----------- moderador ---------------//
 
-Route::get('/moderador', [moderadorController::class, 'mod'])->name('moderador');
+Route::get('moderador', [moderadorController::class, 'mod'])->name('moderador');
+Route::get('moderador/pdf', [moderadorController::class, 'exportPDF'])->name('moderador.pdf');
 
 
 require __DIR__.'/auth.php';

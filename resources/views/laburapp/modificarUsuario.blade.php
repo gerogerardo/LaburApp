@@ -88,7 +88,7 @@
         <!-- BOTÓN ELIMINAR -->
         <form action="{{ route('eliminar.usuario') }}" method="POST" onsubmit="return confirm('¿Seguro que querés eliminar tu cuenta?')">
             @csrf
-            <button type="submit" class="boton">Eliminar cuenta</button>
+            <button type="submit" class="boton eliminar">Eliminar cuenta</button>
         </form>
     </div>
 </main>

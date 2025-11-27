@@ -3,7 +3,7 @@
 @section('contenido')
 
     <div class="publicaciones">
-        <div class="link">
+        <div class="link ver-publicacion">
             <p><strong>Título:</strong> {{ $publicacion->nombre_publicacion }} <br>  </p>
             <p> <strong>Descripcion: </strong> {{ $publicacion->descripcion }} <br> </p>
             <p> <strong>Profesión: </strong> {{ $publicacion->profesion->nombre_profesion ?? 'Sin especificar' }} <br> </p>
@@ -30,7 +30,7 @@
                 @if(auth()->check() && auth()->user()->rol === 'usuario')
                 <input type="button" class="boton" value="Solicitar" onclick="location.href='{{ route('solicitar.publicacion', $publicacion->id_publicaciones) }}'" >
                 @endif
-                <input type="button" class="boton" value="Volver" onclick="location.href='{{ route('buscar.publicaciones') }}'">
+                <input type="button" class="boton" value="Volver" onclick="location.href='{{ url('index') }}'">
                 
             </div>
         </div>

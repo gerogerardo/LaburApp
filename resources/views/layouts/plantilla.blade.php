@@ -23,12 +23,9 @@
                     <li><a href="{{ route ('perfil')}}" alt="Ver Perfil">Ver Perfil</a></li>
                     <li><a href="{{  route('misPublicaciones')}}" alt="Ver publicaciones"> Mis publicaciones</a></li>
                     <li><a href="{{  route('Mis_solicitudes')}}" alt="Ver mis solicitudes"> Mis solicitudes</a></li>
-                    <li><a > Reportes</a></li>
-                   
                     @auth
                     @if(auth()->check() && auth()->user()->rol === 'moderador')
-                            <!-- INTERFAZ SOLO PARA MODERADORES -->
-                    <li><a href="{{  route('moderador')}}">Administracion</a></li>    
+                    <li><a  href="{{  route('moderador')}}">Administración</a></li>                   
                 @endif
                 @endauth
                     

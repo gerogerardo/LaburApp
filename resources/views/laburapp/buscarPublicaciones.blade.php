@@ -8,8 +8,10 @@
             <input class="btn-busqueda" type="submit" value="Enviar" class="boton" onclick="location.href='{{ route('buscar.publicaciones') }}'">
         </form>
 @if($usuarios->isEmpty())
-        <h3 style="margin-top: 2dvh; margin-bottom: 2dvh;">Usuarios</h3><br>
-        <p>No se encontraron usuarios</p>
+        <div class="contenedor-busquedas" style="margin-bottom: 4dvh; margin-top: 4dvh;">
+                <h3 style="margin-top: 2dvh; margin-bottom: 2dvh;">Usuarios</h3><br>
+                <p style="font-weight: 450;">No se encontraron usuarios</p>
+        </div> 
 @else
 <div class="seccion">
         <div class="contenedor-busquedas">
@@ -28,10 +30,12 @@
 </div>
         @endif
 @if($publicaciones->isEmpty())
-        <h3 style="margin-top: 2dvh; margin-bottom: 2dvh;">Publicaciones</h3><br>
-        <p>No se encontraron publicaciones que coincidan con tu búsqueda.</p>
+        <div class="contenedor-busquedas">
+                <h3 style="margin-top: 4dvh; margin-bottom: 4dvh; border-top: 1px solid #505050af; padding-top: 6dvh; width: 100%; text-align: center;">Publicaciones</h3><br>
+                <p style="font-weight: 450; margin-bottom: 4dvh;">No se encontraron publicaciones que coincidan con tu búsqueda.</p>
+        </div>
 @else
-<h3 style="margin-top: 2dvh; margin-bottom: 2dvh;">Publicaciones</h3>
+<h3 style="margin-top: 4dvh; margin-bottom: 2dvh; border-top: 1px solid #505050af; padding-top: 3dvh; width: 100%; text-align: center;">Publicaciones</h3>
 <div class="publicaciones">
 @foreach($publicaciones as $publicacion)
 <li class="link">
