@@ -21,6 +21,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
         Concerns\CompilesComments,
         Concerns\CompilesComponents,
         Concerns\CompilesConditionals,
+        Concerns\CompilesContexts,
         Concerns\CompilesEchos,
         Concerns\CompilesErrors,
         Concerns\CompilesFragments,
@@ -776,9 +777,9 @@ class BladeCompiler extends Compiler implements CompilerInterface
 
         if (is_null($alias)) {
             $alias = str_contains($class, '\\View\\Components\\')
-                ? (new Collection(explode('\\', Str::after($class, '\\View\\Components\\'))))->map(function ($segment) {
-                    return Str::kebab($segment);
-                })->implode(':')
+                ? (new Collection(explode('\\', Str::after($class, '\\View\\Components\\'))))
+                    ->map(fn ($segment) => Str::kebab($segment))
+                    ->implode(':')
                 : Str::kebab(class_basename($class));
         }
 
@@ -1015,6 +1016,28 @@ class BladeCompiler extends Compiler implements CompilerInterface
     public function precompiler(callable $precompiler)
     {
         $this->precompilers[] = $precompiler;
+    }
+
+    /**
+     * Execute the given callback using a custom echo format.
+     *
+     * @param  string  $format
+     * @param  callable  $callback
+     * @return string
+     */
+    public function usingEchoFormat($format, callable $callback)
+    {
+        $originalEchoFormat = $this->echoFormat;
+
+        $this->setEchoFormat($format);
+
+        try {
+            $output = call_user_func($callback);
+        } finally {
+            $this->setEchoFormat($originalEchoFormat);
+        }
+
+        return $output;
     }
 
     /**

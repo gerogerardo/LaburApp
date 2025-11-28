@@ -46,7 +46,7 @@
     @endauth
     @guest
         <div class="contenedor-no-sesion">
-            <p>No tienes una cuenta ingresada. Inicia Sesión e inténtalo de nuevo.</p>
+            <a href="{{ route('inicioSesion.form') }}" style="text-decoration: none; color: black; padding: 3dvh;">No tienes una cuenta ingresada. <strong>Inicia Sesión e inténtalo de nuevo.</strong></a>
         </div>
     @endguest
 </main>

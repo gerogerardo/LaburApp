@@ -15,7 +15,7 @@
                 @if(Auth::user()->foto_perfil)
                     <img id="imagenPreview" src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" class="fotoperfil" >
                 @else
-                    <img id="imagenPreview" src="{{ asset('images/icono_usuario.png') }}" class="fotoperfil" width="150">
+                    <img id="imagenPreview" src="{{ asset('imagenes/icono_usuario.png') }}" class="fotoperfil" width="150">
                 @endif
                 <input type="file" name="foto_perfil" id="foto_perfil" onchange="previewImage(event)">
             </div>

@@ -21,7 +21,7 @@
                 <div class='contenedor-input'>
                     <h3>Foto de perfil</h3><input type="file" name="imagen" >
                     @error('imagen')
-                    <div class="alert alert-danger mt-2"><p>La imagen no debe ser mayor a 2MB</p></div>
+                    <div class="alert alert-danger mt-2" style="color: #c70d0d;"><p>La imagen no debe ser mayor a 2MB</p></div>
                     @enderror
                 </div>
             </div>

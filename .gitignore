@@ -17,3 +17,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/vendor
+/.vendor
+/node_modules

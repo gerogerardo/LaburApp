@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="icon" href="storage/imagenes/logo.png" type="image/png">
+    <link rel="icon" href="{{ asset('imagenes/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
     <title>@yield('titulo')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 <body>
 <header>
     <img id="abrir" class="abrir-menu" src="./imagenes/fotoMenu.png" alt="Menú hamburguesa">
-        <img class="logo" src="storage/imagenes/logo.png" alt="Logo de Laburapp">
+        <img class="logo" src="{{ asset('imagenes/logo.png') }}" alt="Logo de Laburapp">
         <nav class="nav-bar" id="nav">
             <button id="cerrar" class="cerrar-menu">X</button>
                     <ul class="nav-list"> 
@@ -61,7 +61,7 @@
     </main> 
     <footer> 
         <h3 id="derecho"></h3>
-        <a target="_blank" href="https://www.whatsapp.com/?lang=es_LA"><img class="btn-wsp" src="storage/imagenes/wsp.png" alt="Logo de wsp"> </a>
+            <a target="_blank" href="https://www.whatsapp.com/?lang=es_LA"><img class="btn-wsp" src="{{ asset('imagenes/wsp.png') }}" alt="Logo de wsp"> </a>
         <script src="{{  asset('js/script.js')}}"></script>
     </footer>
 
