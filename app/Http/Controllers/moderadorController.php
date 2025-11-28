@@ -11,13 +11,6 @@ use App\Models\SolicitudHecha;
 use CpChart\Data;
 use CpChart\Image;
 
-/**
- * VERSIÓN CORREGIDA PARA LA API REAL DE CPCHART
- * 
- * Esta versión usa la estructura real de CpChart como está instalada en tu proyecto.
- * No usa la clase Bar que no existe, sino que dibuja las barras directamente
- * usando los métodos de la clase Image.
- */
 class moderadorController extends Controller
 {
 
@@ -34,21 +27,16 @@ class moderadorController extends Controller
 
         $solicitudes = SolicitudHecha::whereYear('fecha', $year)
             ->whereMonth('fecha', $month)
-            ->with('publicacion.profesion')
+            ->with('profesion')
             ->get();
 
         $publicacionesPorProfesion = $publicaciones->map(function ($item) {
             return $item->profesion->nombre_profesion;
         })->countBy();
 
-        $solicitudesPorProfesion = $solicitudes
-            ->filter(function ($item) {
-                return $item->publicacion && $item->publicacion->profesion;
-            })
-            ->map(function ($item) {
-                return $item->publicacion->profesion->nombre_profesion;
-            })
-            ->countBy();
+$solicitudesPorProfesion = $solicitudes
+    ->map(fn($item) => $item->profesion->nombre_profesion)
+    ->countBy();
 
         return view('laburapp.moderador', [
             'mesNombre' => Carbon::createFromDate($year, $month)->translatedFormat('F Y'),

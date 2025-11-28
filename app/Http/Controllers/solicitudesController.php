@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Solicitudes;
 use App\Models\Publicacion;
+use App\Models\SolicitudHecha;
 
 
 class solicitudesController extends Controller
@@ -33,6 +34,7 @@ public function solicitar($id_publicaciones)
     // Evitar que el usuario se solicite a sí mismo
     if ($publicacion->id_usuario == $id_usuario) {
         return redirect()->back()->with('error', 'No puedes solicitar una publicación creada por ti mismo');
+
     }
 
     // Verificar si ya existe una solicitud

@@ -95,7 +95,6 @@ public function modificarPublicacion(Request $request, $id)
     $request->validate([
         'nombre_publicacion' => 'required|string|max:255',
         'descripcion' => 'required|string|max:1000',
-        'fecha' => 'required|date',
         'foto_portada' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         'id_profesion' => 'required|exists:profesiones,id_profesion',
     ]);
@@ -112,7 +111,6 @@ public function modificarPublicacion(Request $request, $id)
     $publicacion->update([
         'nombre_publicacion' => $request->nombre_publicacion,
         'descripcion' => $request->descripcion,
-        'fecha' => $request->fecha,
         'foto_portada' => $imagenPath,
         'id_profesion' => $request->id_profesion,
     ]);

@@ -15,7 +15,7 @@
         <div class="seccion">
             <div class="publicaciones">
                 @foreach ($publicaciones as $publicacion)
-                    <div class="link">
+                    <a class="publi-link link" href="{{ route('ver.publicacion', $publicacion->id_publicaciones) }}" style="text-decoration: none;">
                         <h2>{{ $publicacion->nombre_publicacion }}</h2>
                         <p>{{ $publicacion->descripcion }}</p>
                         <p>{{ $publicacion->profesion->nombre_profesion ?? 'Sin profesión' }}</p>
@@ -31,7 +31,7 @@
                                 <button type="submit" class="boton eliminar">Eliminar publicación</button>
                             </form>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>

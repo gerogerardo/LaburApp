@@ -24,9 +24,6 @@
         @endforeach
     </select>
     <br><br>
-    <label for="fecha" class="label-modif-publi" style="padding-right: 2dvh;"><strong>Fecha: </strong></label>
-    <input type="date" name="fecha" id="fecha" value="{{ $publicacion->fecha }}">
-    <br><br>
     <label for="foto" class="label-modif-publi"><strong>Foto</strong></label>
     <br>
     <div class="contenedor-foto-mod-publi">

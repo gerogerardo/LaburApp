@@ -200,6 +200,7 @@ main{
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+  text-align: center;
   background: #fff;
   margin: 1.2vh;
   width: 50vh;
@@ -225,9 +226,19 @@ main{
 }
 
 /* alertas de inicio, cerrar sesion, solicitudes */
-.alertas {
+.alertas-success {
   background-color: #d4edda;
   color: #155724;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: fixed;
+  width: 100%;
+  animation: desaparecer 3s ease forwards;
+}
+
+.alertas-danger{
+  background-color: #efb1b1;
+  color: rgb(134, 25, 17);
   padding: 10px;
   margin-bottom: 10px;
   position: fixed;
@@ -1159,7 +1170,6 @@ footer{
   padding: 2vw;
   background-color: #2F2F30;
   color: #fff;
-  position: ;
 }
 
 .paginacion{

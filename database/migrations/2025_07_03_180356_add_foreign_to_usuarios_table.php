@@ -32,8 +32,8 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropForeignKey('usuarios_id_localidad_foreign');
-            $table->dropForeignKey('usuarios_id_rating_foreign');
+            $table->dropForeign('usuarios_id_localidad_foreign');
+            $table->dropForeign('usuarios_id_rating_foreign');
         });
         
         Schema::enableForeignKeyConstraints();

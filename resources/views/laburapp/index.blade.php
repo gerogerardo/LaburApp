@@ -3,11 +3,16 @@
 
 
 @if (session('success'))
-    <div class="alertas">
+    <div class="alertas-success">
         {{ session('success') }}
     </div>
 @endif
 
+@if (session('error'))
+    <div class="alertas-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
     <div class="grupo">
     @section('contenido')
