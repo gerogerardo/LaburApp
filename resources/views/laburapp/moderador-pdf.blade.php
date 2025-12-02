@@ -98,12 +98,12 @@
 
     <hr>
 
-<h3>Gráfico: Publicaciones por Profesión</h3>
+
 @if(!empty($imgPublicaciones))
     <img src="{{ $imgPublicaciones }}" style="width: 100%; max-width: 600px;">
 @endif
 
-<h3>Gráfico: Solicitudes por Profesión</h3>
+
 @if(!empty($imgSolicitudes))
     <img src="{{ $imgSolicitudes }}" style="width: 100%; max-width: 600px;">
 @endif

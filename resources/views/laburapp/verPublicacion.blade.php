@@ -75,7 +75,7 @@
 
                     <div class="campo" style="padding-bottom: 2vh;">
                         <label for="comentario">Comentario:</label> <br>
-                        <textarea maxlength="80" name="comentario" id="comentario"></textarea>  
+                        <textarea maxlength="200" name="comentario" id="comentario"></textarea>  
                     </div>
 
                     <input type="submit" class="boton" value="Enviar Calificación">
