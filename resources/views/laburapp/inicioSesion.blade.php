@@ -11,7 +11,7 @@
 </head>
 <body>
 @if (session('success'))
-    <div class="alertas">
+    <div class="alertas-success">
         {{ session('success') }}
     </div>
 @endif
@@ -23,7 +23,7 @@
             <form name="logueo" method="post" action="{{ route('inicioSesion.usuario') }}" class="cuadro-inicio-sesion">
                 @csrf
                 @if($errors->has('inicioSesion'))
-                    <div class="error">{{ $errors->first('inicioSesion') }}</div>
+                    <div class="error" style="color: #c70d0d;">{{ $errors->first('inicioSesion') }}</div>
                 @endif
                 <div class="contenedor-input">
                     <h3>Email</h3> <br>

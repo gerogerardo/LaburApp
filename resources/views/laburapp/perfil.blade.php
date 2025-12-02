@@ -9,7 +9,7 @@
     <div class='bloque-perfil'>
         <img src="{{ asset('storage/' . $usuario->foto_perfil ) }}" class='fotoperfil'>
         <input class='boton btn-perfil' type='button' value='Modificar perfil' onClick='location="{{ route('formulario.modificar') }}"'>
-        <input class='boton btn-perfil' type='button' value='Ver solicitudes' onClick='location="{{ route('ver.solicitudes') }}"'>
+        <input class='boton btn-perfil' type='button' value='Solicitudes recibidas' onClick='location="{{ route('ver.solicitudes') }}"'>
         
     </div>
 

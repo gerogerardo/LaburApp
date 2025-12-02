@@ -11,9 +11,11 @@
     <h3>Solicitudes enviadas</h3>
     @foreach ($solicitudes as $solicitud)
     <div class='bloque-solicitud'>
+        <a href="{{ route('ver.perfilDeOtroUsuario', $solicitud->publicacion->usuario->id_usuario) }}" style="text-decoration: none; color: inherit;">
         <div class='texto-solicitudes'>
-            <p>Enviaste una solicitud a "<strong>{{$solicitud->publicacion->nombre_publicacion}}</strong>" </p>
+            <p>Enviaste una solicitud a la publicación "<strong>{{$solicitud->publicacion->nombre_publicacion}}</strong>" del usuario <strong> {{$solicitud->publicacion->usuario->nombre}} {{$solicitud->publicacion->usuario->apellido}}</strong><br><br> Solicitado el día: <strong>{{$solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : 'Sin fecha'}}</strong></p>
         </div>
+    </a>
     </div>
 @endforeach
     </div> 

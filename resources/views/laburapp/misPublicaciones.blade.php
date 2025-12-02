@@ -15,13 +15,14 @@
         <div class="seccion">
             <div class="publicaciones">
                 @foreach ($publicaciones as $publicacion)
-                    <a class="publi-link link" href="{{ route('ver.publicacion', $publicacion->id_publicaciones) }}" style="text-decoration: none;">
+                    <div class="link ver-publicacion" style="text-decoration: none;">
                         <h2>{{ $publicacion->nombre_publicacion }}</h2>
                         <p>{{ $publicacion->descripcion }}</p>
                         <p>{{ $publicacion->profesion->nombre_profesion ?? 'Sin profesión' }}</p>
-                        
-                        <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen" id="fotopubli-index">
-                        <div class="botones-mis-publis">
+                        <a class="publi-link" href="{{ route('ver.publicacion', $publicacion->id_publicaciones) }}">
+                            <img src="{{ asset('storage/' . $publicacion->foto_portada) }}" alt="Imagen" id="fotopubli-index">
+                        </a>
+                            <div class="botones-mis-publis">
                             <input type="button" class="boton" 
                                 value="Modificar publicación" 
                                 onclick="location.href='{{ route('formulario.modificar.publicacion', $publicacion->id_publicaciones) }}'">
@@ -31,7 +32,7 @@
                                 <button type="submit" class="boton eliminar">Eliminar publicación</button>
                             </form>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
             </div>
         </div>

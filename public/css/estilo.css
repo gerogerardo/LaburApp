@@ -201,6 +201,7 @@ main{
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
+  justify-content: center;
   background: #fff;
   margin: 1.2vh;
   width: 50vh;
@@ -1127,8 +1128,9 @@ select {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.6);
   color: #333;
-  margin: 5vh;
+  margin: 2vh;
   padding: 3vh;
+  width: 100%;
   border-radius: 4px;
   flex-wrap: wrap;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);

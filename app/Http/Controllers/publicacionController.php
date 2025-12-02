@@ -121,9 +121,13 @@ public function modificarPublicacion(Request $request, $id)
 public function buscarPublicaciones(Request $request) //tambien busca usuarios
 {
     $busqueda = $request->input('busq');
+    
     $usuarios = Usuario::where('nombre', 'like', '%'. $busqueda .'%')->orWhere('apellido', 'like', '%' . $busqueda . '%')->paginate(3, ['*'], 'usuarios_page');
     $publicaciones = Publicacion::where('nombre_publicacion', 'like', '%' . $busqueda . '%')
         ->orWhere('descripcion', 'like', '%' . $busqueda . '%')
+        ->orWhereHas('profesion', function ($query) use ($busqueda) {
+            $query->where('nombre_profesion', 'like', '%' . $busqueda . '%'); })
+        ->orWhereHas('usuario', function ($query) use ($busqueda){ $query->where('nombre','like', '%'.$busqueda.'%')->orWhere('apellido', 'like', '%' . $busqueda . '%');} )
         ->with(['profesion','usuario'])->paginate(6, ['*'], 'publicaciones_page');
  
 
@@ -134,7 +138,6 @@ public function buscarPublicaciones(Request $request) //tambien busca usuarios
 public function verPublicacion($id){
     $publicacion = Publicacion::with(['profesion', 'usuario', 'ratings.user'])->FindOrFail($id);
     return view('laburapp.verPublicacion', compact('publicacion'));
-
 
 }
 }

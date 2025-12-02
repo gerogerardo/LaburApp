@@ -53,13 +53,13 @@
     </script>
 @endif
 @if(auth()->check() && auth()->user()->rol === 'usuario')
-    <div class="link">
+    <div class="link" style="width: 60dvh;">
     <!-- {{-- Formulario de Calificación --}} -->
     @auth
         @if($publicacion->id_usuario !== Auth::id())
-            <div >
+            <div style="width: 50dvh; display: flex; flex-direction: column; align-items: center;">
                 <h3>Calificar esta publicación</h3>
-                <form action="{{ route('ratings.store') }}" method="POST">
+                <form action="{{ route('ratings.store') }}" method="POST" style="width: 100%;">
                     @csrf
                     <input type="hidden" name="id_publicaciones" value="{{ $publicacion->id_publicaciones }}">
 
@@ -81,31 +81,29 @@
                     <input type="submit" class="boton" value="Enviar Calificación">
                 </form>
             </div>
-            <hr>
+            <br>
         @endif
     @endauth
 
-    <div>
+    <div style="width: 50dvh;">
         <div style="padding-bottom: 2vh;">
-        <strong>Opiniones de la publicacion</strong><br>
-        @if($publicacion->ratings->count() > 0)
+            <h3>Calificaciones de la publicacion</h3>
+            @if($publicacion->ratings->count() > 0)
             {{ $publicacion->averageRating() }} ⭐ ({{ $publicacion->ratings->count() }} calificaciones)
-        @else
-            No hay calificaciones todavía.
+            @else
+            <p style="padding-top: 1dvh;">No hay calificaciones todavía.</p>
         @endif
     </div>
 
     <!-- {{-- Lista de calificaciones --}} -->
 
-        <h3>Calificaciones</h3>
+        <h3>Opiniones</h3>
         @if($publicacion->ratings->count() > 0)
-            <ul class="lista-calificaciones">
+            <ul class="lista-calificaciones" style="display: flex; list-style-type: none; flex-direction: column; padding: 0;">
                 @foreach($publicacion->ratings as $rating)
-                    <li class="item-calificacion {{ Auth::check() && $rating->id_usuario == Auth::id() ? 'mi-calificacion' : '' }}">
-                        <strong>{{ $rating->user?->nombre }} {{ $rating->user?->apellido }}</strong>  
-                            — {{ $rating->rating }} ⭐  
-                        <br>
-                        <em>{{ $rating->comentario }}</em>
+                    <li class="item-calificacion {{ Auth::check() && $rating->id_usuario == Auth::id() ? 'mi-calificacion' : '' }}" style="display: flex; align-items: flex-start; flex-direction: column; padding: 2dvh; border: 1px solid black; border-radius: 10px; margin-bottom: 2dvh; width: auto;">
+                        <p><strong>{{ $rating->user?->nombre }} {{ $rating->user?->apellido }}</strong> — {{ $rating->rating }} ⭐</p>  
+                        <em style="display: block; width: 100%; white-space: normal; word-break: break-word; text-align: left; padding-bottom: 1dvh;">{{ $rating->comentario }}</em>
 
                         @if(Auth::check() && $rating->id_usuario == Auth::id())
                             <form action="{{ route('ratings.destroy', $rating->id_rating) }}" method="POST" style="display:inline;">
@@ -119,9 +117,9 @@
 
             </ul>
         @else
-            <p>No hay calificaciones todavía.</p>
+            <p style="padding-top: 1dvh;">No hay opiniones todavía.</p>
         @endif
     </div>
 @endif
-   </div>
+    </div>
 @endsection

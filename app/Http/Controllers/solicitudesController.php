@@ -54,16 +54,31 @@ public function solicitar($id_publicaciones)
     return redirect()->route('index')->with('error', 'Ya has solicitado esta publicación');
 }
 
+//vista de las solicitudes ENVIADAS por el usuario
 public function Mis_solicitudes(){
-   if(Auth::check()){
-    $id_usuario = Auth::id();
-
-    $solicitudes = Solicitudes::where('id_usuario', $id_usuario)->with(['publicacion'])->get();
+    if(Auth::check()){
+        $id_usuario = Auth::id(); 
+        $solicitudes = Solicitudes::where('id_usuario', $id_usuario)
+            ->with(['publicacion'])
+            ->get();
         return view ('laburapp.Mis_solicitudes', compact('solicitudes'));
     
     }else {
             return redirect()->route('inicioSesion.form')->withErrors(['error' => 'Debes iniciar sesión para ver tus publicaciones.']); 
         }
+}
+
+//Vista de las solicitudes RECIBIDAS por el usuario
+public function solicitudes_recibidas(){
+    if(Auth::check()){
+        $usuarioActual = Auth::user();
+        $solicitudes = Solicitudes::whereHas('publicacion', function($query) use ($usuarioActual) {
+            $query->where('id_usuario', $usuarioActual->id_usuario);
+        })->with(['usuario'])->get();
+        return view('laburapp.solicitudes_recibidas', compact('solicitudes'));
+    } else {
+        return redirect()->route('inicioSesion.form')->withErrors(['error' => 'Debes iniciar sesión.']); 
+    }
 }
 
 }

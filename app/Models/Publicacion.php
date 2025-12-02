@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Solicitudes;
 class Publicacion extends Model
 {
     use HasFactory;
@@ -29,6 +30,10 @@ class Publicacion extends Model
     public function usuario(){
         return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
+
+public function solicitudes(){
+    return $this->hasMany(Solicitudes::class, 'id_publicaciones', 'id_publicaciones');
+}
 
 
 public function user()

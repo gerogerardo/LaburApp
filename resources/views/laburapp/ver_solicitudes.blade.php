@@ -9,22 +9,19 @@
 </div>
 @else
 
-<h3>Solicitudes recibidas</h3>
-
     @foreach ($solicitudes as $solicitud)
     
     <div class='bloque-solicitud'>
+        <a href="{{ route('ver.perfilDeOtroUsuario', $solicitud->usuario->id_usuario) }}" style="text-decoration: none; color: inherit;">
         <div class='texto-solicitudes'>
-            <p>Tienes una solicitud de {{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}} para la publicacion de <strong> "{{ $solicitud->publicacion->nombre_publicacion }}"</strong>
-                <br> <br>
-            Solicitado el día: </p>
+            <p>Tienes una solicitud de <strong>{{$solicitud->usuario->nombre}} {{$solicitud->usuario->apellido}}</strong> para la publicacion de <strong> "{{ $solicitud->publicacion->nombre_publicacion }}"</strong>
+            <br><br>
+            Solicitado el día: <strong>{{$solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : 'Sin fecha'}} </strong> </p>
         </div>
+        </a>
     </div>
 @endforeach
     </div>
-
-  
-
 
     @endif
     @endsection
