@@ -1,11 +1,8 @@
 @extends('layouts.plantilla')
 @section("titulo", "Perfil de Usuario")
-
 @section('contenido')
-
 <main>
     <div class='barra-arriba'>
-    
     @auth
         
         <div class='bloque-perfil'>
@@ -14,9 +11,13 @@
         <div class='info'>
             <div class='contenedor-datos'><h2>Nombre</h2><p>{{ $usuario->nombre }} {{ $usuario->apellido }}</p></div>
             <div class='contenedor-datos'><h2>Información</h2> <p>{{ $usuario->informacion }}</p></div>
+            @if($tieneAcceso)
             <div class='contenedor-datos'> <h4>Número de Teléfono:</h4><p>{{ $usuario->telefono }}</p></div>
             <div class='contenedor-datos'> <h4>Domicilio</h4> <p>{{ $usuario->domicilio }}</p></div>
             <div class='contenedor-datos'> <h4>Mail</h4> <p>{{ $usuario->mail }}</p></div>
+            @else
+            <strong><em>Para ver el teléfono, domicilio y mail, debes solicitar una publicación de este usuario.</em></strong>
+            @endif
             <div class='contenedor-datos'> <h4>Localidad</h4> <p>{{ $usuario->localidad->nombre_localidad }}</p></div>
             
             @if($promedioGeneral > 0)

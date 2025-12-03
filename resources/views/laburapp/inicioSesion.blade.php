@@ -49,7 +49,6 @@
     </main> 
     <footer> 
         <h3 id="derecho"></h3>
-        <a target="_blank" href="https://www.whatsapp.com/?lang=es_LA"><img class="btn-wsp" src="{{ asset('/storage/imagenes/wsp.png') }}" alt="Logo de wsp"> </a>
     </footer>
 </body>
 </html>

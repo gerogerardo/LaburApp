@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Rating;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
-
-
+use App\Models\SolicitudHecha;
 
 class usuarioController extends Controller
 {
@@ -85,6 +84,15 @@ class usuarioController extends Controller
 public function verPerfilDeOtroUsuario($id)
 {
     $usuario = Usuario::findOrFail($id);
+    $usuarioAutorizado= Auth::user();
+    $tieneAcceso = false;
+
+        if ($usuarioAutorizado) {
+        $tieneAcceso = SolicitudHecha::where('id_del_solicitante', $usuarioAutorizado->id_usuario)
+            ->where('id_del_solicitado', $usuario->id_usuario)
+            ->exists();
+    }
+
 
     // Obtener IDs de publicaciones del usuario
     $publicaciones = Publicacion::where('id_usuario', $id)
@@ -116,7 +124,8 @@ public function verPerfilDeOtroUsuario($id)
     return view('laburapp.verPerfilDeOtro', [
         'usuario' => $usuario,
         'promedioGeneral' => $promedioGeneral,
-        'promedioPorProfesion' => $promedioPorProfesion
+        'promedioPorProfesion' => $promedioPorProfesion,
+        'tieneAcceso' => $tieneAcceso
     ]);
 }
 }

@@ -23,12 +23,12 @@
             <!-- NOMBRE Y APELLIDO -->
             <div class="contenedor-input div2">
                 <h3>Nombre</h3>
-                <input type="text" name="nombre" value="{{ auth()->user()->nombre }}">
+                <input type="text" name="nombre" value="{{ auth()->user()->nombre }}" disabled>
             </div>
 
             <div class="contenedor-input div3">
                 <h3>Apellido</h3>
-                <input type="text" name="apellido" value="{{ auth()->user()->apellido }}">
+                <input type="text" name="apellido" value="{{ auth()->user()->apellido }}" disabled>
             </div>
 
             <!-- CONTRASEÑA -->
